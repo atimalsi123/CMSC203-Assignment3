@@ -1,0 +1,98 @@
+public class CryptoManager {
+	
+	private static final char LOWER_BOUND = ' ';
+	private static final char UPPER_BOUND = '_';
+	private static final int RANGE = UPPER_BOUND - LOWER_BOUND + 1;
+	private static int low = 32;
+	private static int high = 95;
+
+	/**
+	 * This method determines if a string is within the allowable bounds of ASCII codes 
+	 * according to the LOWER_BOUND and UPPER_BOUND characters
+	 * @param plainText a string to be encrypted, if it is within the allowable bounds
+	 * @return true if all characters are within the allowable bounds, false if any character is outside
+	 */
+	public static boolean stringInBounds (String plainText) {
+		boolean characters = false;
+		for (int a = 0; a < plainText.length(); a++) {
+			if (((int)plainText.charAt(a) >= low) &&  ((int)plainText.charAt(a) <= high)){
+				characters = true;
+			}
+		}
+		return characters;
+	}
+
+	/**
+	 * Encrypts a string according to the Caesar Cipher.  The integer key specifies an offset
+	 * and each character in plainText is replaced by the character \"offset\" away from it 
+	 * @param plainText an uppercase string to be encrypted.
+	 * @param key an integer that specifies the offset of each character
+	 * @return the encrypted string
+	 */
+	public static String encryptCaesar(String plainText, int key) {
+		char letter = 'a';
+		int key1 = letter + 1;
+		String newletter = Character.toString((char) key1);
+		System.out.println(newletter);
+		return newletter;
+	}
+	
+	/**
+	 * Encrypts a string according the Bellaso Cipher.  Each character in plainText is offset 
+	 * according to the ASCII value of the corresponding character in bellasoStr, which is repeated
+	 * to correspond to the length of plainText
+	 * @param plainText an uppercase string to be encrypted.
+	 * @param bellasoStr an uppercase string that specifies the offsets, character by character.
+	 * @return the encrypted string
+	 */
+	public static String encryptBellaso(String plainText, String bellasoStr) {
+		char letter = 'b';
+		for (int a = 0; a < plainText.length(); a++) {
+			char b = (char) (plainText.charAt(a) + bellasoStr.charAt(a));
+			String newletter = Character.toString(b);
+			System.out.println(newletter);
+			return newletter;
+		}
+		return bellasoStr;
+
+	}
+	
+	/**
+	 * Decrypts a string according to the Caesar Cipher.  The integer key specifies an offset
+	 * and each character in encryptedText is replaced by the character \"offset\" characters before it.
+	 * This is the inverse of the encryptCaesar method.
+	 * @param encryptedText an encrypted string to be decrypted.
+	 * @param key an integer that specifies the offset of each character
+	 * @return the plain text string
+	 */
+	public static int Range(int key) {
+		while (key > high) {
+			key = high - low;
+		}
+		return key;
+	}
+	public static String decryptCaesar(String encryptedText, int key) {
+		char letter = 'a';
+		int a = letter - 1;
+		String newletter = Character.toString((char) a);
+		System.out.println(newletter);
+		return newletter;
+	}
+	
+	
+	/**
+	 * Decrypts a string according the Bellaso Cipher.  Each character in encryptedText is replaced by
+	 * the character corresponding to the character in bellasoStr, which is repeated
+	 * to correspond to the length of plainText.  This is the inverse of the encryptBellaso method.
+	 * @param encryptedText an uppercase string to be encrypted.
+	 * @param bellasoStr an uppercase string that specifies the offsets, character by character.
+	 * @return the decrypted string
+	 */
+	public static String decryptBellaso(String encryptedText, String bellasoStr) {
+		char letter = 'a';
+		int a = letter - 1;
+		String newletter = Character.toString((char) a);
+		System.out.println(newletter);
+		return newletter;
+	}
+}
